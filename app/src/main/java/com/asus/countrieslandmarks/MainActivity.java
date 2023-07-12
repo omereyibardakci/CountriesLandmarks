@@ -1,6 +1,7 @@
 package com.asus.countrieslandmarks;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
@@ -33,11 +34,20 @@ public class MainActivity extends AppCompatActivity {
         Landmarks liberty = new Landmarks("Liberty","USA",R.drawable.liberty);
         Landmarks tacmahal = new Landmarks("Tac Mahal","India",R.drawable.tacmahal);
 
+
+
         landmarksArrayList.add(pisa);
         landmarksArrayList.add(eiffel);
         landmarksArrayList.add(pyramids);
         landmarksArrayList.add(liberty);
         landmarksArrayList.add(tacmahal);
+
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        LandmarksAdapter landmarksAdapter=new LandmarksAdapter(landmarksArrayList);
+
+        binding.recyclerView.setAdapter(landmarksAdapter);
 
     }
 }
