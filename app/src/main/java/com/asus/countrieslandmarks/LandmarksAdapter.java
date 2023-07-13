@@ -1,5 +1,8 @@
 package com.asus.countrieslandmarks;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +30,7 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.Land
         // this 'binding' will come from 'RecyclerRowBinding'
         // 'inflate' reads the XML layout file
 
-        RecyclerRowBinding recyclerRowBinding= RecyclerRowBinding.inflate(LayoutInflater.from(parent.getContext()));
+        RecyclerRowBinding recyclerRowBinding= RecyclerRowBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
         return new LandmarksHolder(recyclerRowBinding);
 
     }
@@ -38,6 +41,19 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.Land
         // we got the data and bind it to the view element.
         holder.binding.recyclerViewTextView.setText(landmarksArrayList.get(position).name);
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(),PicturesActivity.class);
+                intent.putExtra("landmarks", landmarksArrayList.get(holder.getAdapterPosition()));
+
+                holder.itemView.getContext().startActivity(intent);
+
+
+            }
+        });
+
     }
 
     @Override
@@ -45,7 +61,7 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.Land
         return landmarksArrayList.size();
     }
 
-    public class LandmarksHolder extends RecyclerView.ViewHolder{
+        public class LandmarksHolder extends RecyclerView.ViewHolder{
 
         private RecyclerRowBinding binding;
 

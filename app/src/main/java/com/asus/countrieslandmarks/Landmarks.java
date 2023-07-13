@@ -1,6 +1,8 @@
 package com.asus.countrieslandmarks;
 
-public class Landmarks {
+import java.io.Serializable;
+
+public class Landmarks implements Serializable {
 
     String name;
     String country;
